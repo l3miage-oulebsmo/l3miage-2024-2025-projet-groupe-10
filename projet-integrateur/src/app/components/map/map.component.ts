@@ -55,7 +55,9 @@ export class MapComponent {
 
   // Charger les données CSV
   loadCSV(): void {
-    const csvFile = 'assets/locations.csv';
+   // const csvFile = 'locations.csv';
+   const csvFile = 'assets/locations.csv'; 
+
     Papa.parse(csvFile, {
       download: true,
       header:true,
@@ -115,12 +117,11 @@ export class MapComponent {
       ]);
   
       const apiKey = "5b3ce3597851110001cf6248eff7631745e44590b4103fd172e3856b"; 
-      const openRouteApiUrl = "https://api.openrouteservice.org/v2/directions/driving-car/geojson";
+      const openRouteApiUrl = "https://api.openrouteservice.org/v2/directions/driving-car";
   
       const body = JSON.stringify({
-        coordinates: coordinates ,
-        optimize :true,
-      
+        coordinates: coordinates,
+        optimize: true
       });
   
       fetch(openRouteApiUrl, { 
@@ -131,29 +132,37 @@ export class MapComponent {
         },
         body: body
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Données de l'itinéraire reçues :", data);
+  
+        // Vérification que la réponse contient des routes
+        if (data.routes && data.routes.length > 0) {
+          alert('Itinéraire trouvé!'); // Affichage d'un message
+          if (this.route) {
+            this.layerGroup.removeLayer(this.route); // Supprime l'ancien itinéraire
           }
-          return response.json();
-        })
-        .then(data => {
-          console.log("Données de l'itinéraire reçues :", data);
-          if (data.routes && data.routes.length > 0) {
-            if (this.route) {
-              this.layerGroup.removeLayer(this.route); // Supprime l'ancien itinéraire
-            }
-            
-            // Récupérer les coordonnées de l'itinéraire
-            const routeCoordinates = data.routes[0].geometry.coordinates.map((coord: number[]) => [coord[1], coord[0]]);
-            this.route = polyline(routeCoordinates, { color: 'blue' }).addTo(this.layerGroup); // Affiche l'itinéraire
-          } else {
-            console.error('Aucune route trouvée dans la réponse');
-          }
-        })
-        .catch(error => console.error('Error fetching route:', error));
+  
+          // Récupérer les coordonnées de l'itinéraire dans le format correct
+          const routeCoordinates = data.routes[0].geometry.coordinates.map((coord: number[]) => [coord[1], coord[0]]);
+  
+          // Créer et afficher la polyline (itinéraire) sur la carte
+          this.route = polyline(routeCoordinates, { color: 'blue', weight: 4 }).addTo(this.layerGroup); 
+          console.log('Itinéraire ajouté à la carte');
+        } else {
+          alert('Aucune route trouvée');
+          console.error('Aucune route trouvée dans la réponse');
+        }
+      })
+      .catch(error => console.error('Error fetching route:', error));
     }
   }
+  
 
   // Changer la latitude
   public latChange(lat: number) {
