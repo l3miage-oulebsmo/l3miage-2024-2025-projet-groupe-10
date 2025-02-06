@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<div style="height: 500px;"
+  leaflet
+  [leafletCenter]="centre()"
+  [leafletZoom]="zoom()"
+  [leafletLayers]="[backgroundMap]"
+  (leafletCenterChange)="centerChange($event)"
+  (leafletZoomChange)="zoomChange($event)"
+  (leafletMapReady)="onMapReady($event)">
+</div>
+
+<mat-toolbar color="primary">
+  <span>Carte Interactive avec Angular et OpenRoute</span>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-title>Contrôles de la Carte</mat-card-title>
+  <mat-card-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Latitude</mat-label>
+      <input matInput type="number" [(ngModel)]="latitude()" (change)="latChange(latitude())">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Longitude</mat-label>
+      <input matInput type="number" [(ngModel)]="longitude()" (change)="longChange(longitude)">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Zoom</mat-label>
+      <input matInput type="number" [(ngModel)]="zoom()" (change)="zoomChange(zoom)">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="resetMap()">Réinitialiser</button>
+    <button mat-raised-button color="primary" (click)="calculateRoute()">Calculer Itinéraire</button>
+  </mat-card-content>
+</mat-card>

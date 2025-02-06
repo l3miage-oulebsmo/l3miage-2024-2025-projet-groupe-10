@@ -1,0 +1,49 @@
+.livreurs-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px; /* ✅ Ajoute un espace entre les colonnes */
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .livreurs-table th,
+  .livreurs-table td {
+    padding: 15px;
+    border: 1px solid #000000;
+    text-align: center;
+  }
+  
+  .livreurs-table th {
+    background: #6a099f;
+    color: white;
+  }
+  
+  .add-btn {
+    background: #28a745;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .add-btn:hover {
+    background: #218838;
+  }
+  
+  .filter-container {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #filtreDisponibilite {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }

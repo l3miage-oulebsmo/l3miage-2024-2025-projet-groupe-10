@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+
+  <div class="header-card">
+    <h1>👋 Bonjour, Planificateur !</h1>
+    <p class="today-date">{{ today | date:'EEEE d MMMM y' }}</p>
+  </div>
+
+    <div class="card">
+      <h3>📦 Livreurs</h3>
+      <p class="card-value">{{ livreursDisponibles }} / {{ totalLivreurs }}</p>
+      <small>{{ ratioLivreursDispos }}% de disponibilité</small>
+
+
+    <div class="card">
+      <h3>⏳ Commandes en attente</h3>
+      <p class="card-value">{{ commandesEnAttente }}</p>
+      <small>Non affectées</small>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Commandes livrables</h3>
+      <p class="card-value">{{ commandesLivrables }}</p>
+      <small>Prêtes à être prises</small>
+    </div>
+
+    <div class="card">
+      <h3>👥 Équipes</h3>
+      <p class="card-value">{{ totalEquipes }}</p>
+      <small>actives</small>
+    </div>
+
+    <div class="card">
+      <h3>🌟 Satisfaction</h3>
+      <p class="card-value">{{ tauxSatisfaction }}%</p>
+      <small>Clients satisfaits</small>
+    </div>
+
+  <!-- SECTION : Alertes -->
+  <div class="alerts-section">
+    <h2>⚠️ Alertes & Incidents</h2>
+    @if (alerts.length > 0) {
+      <div>
+        <ul>
+          @for (alert of alerts; track alert) {
+            <li>
+              {{ alert }}
+            </li>
+          }
+        </ul>
+      </div>
+    } @else {
+      <p class="no-alert">✅ Aucune alerte en cours.</p>
+    }
+  </div>
+

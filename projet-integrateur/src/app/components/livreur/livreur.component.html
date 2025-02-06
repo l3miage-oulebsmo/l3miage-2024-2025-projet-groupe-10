@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+<!-- Filtre de disponibilité -->
+<div class="filter-container">
+  <label for="filtreDisponibilite">📌 Filtrer les livreurs : </label>
+  <select id="filtreDisponibilite" [(ngModel)]="filtreDisponibilite">
+    <option value="tous">Tous</option>
+    <option value="disponible">Disponibles</option>
+    <option value="indisponible">Indisponibles</option>
+  </select>
+</div>
+
+<!-- Tableau principal des livreurs -->
+<table class="livreurs-table">
+  <thead>
+    <tr>
+      <th>🆔 Code</th>
+      <th>👤 Nom</th>
+      <th>👤 Prénom</th>
+      <th>📩 Email</th>
+      <th>📍 Adresse</th>
+      <th>📦 Commandes</th>
+      <th>✅ Disponible</th>
+      <th>➕ Ajouter à une équipe</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (livreur of getLivreursFiltres(); track livreur) {
+      <tr>
+        <td>{{ livreur.code }}</td>
+        <td>{{ livreur.nom }}</td>
+        <td>{{ livreur.prenom }}</td>
+        <td>{{ livreur.email }}</td>
+        <td>{{ livreur.adresse }}, {{ livreur.codePostal }} {{ livreur.ville }}</td>
+        <td>{{ livreur.commandes.join(', ') }}</td>
+        <td>
+          <input type="checkbox" [(ngModel)]="livreur.disponible" />
+        </td>
+        <td>
+          <select [(ngModel)]="livreur.equipeSelectionnee">
+            <option [ngValue]="null">-- Sélectionnez --</option>
+            @for (equipe of equipes; track equipe) {
+              <option [ngValue]="equipe.id">
+                Équipe {{ equipe.id }}
+              </option>
+            }
+          </select>
+          <button class="add-btn" (click)="ajouterLivreurDansEquipe(livreur)">➕ Ajouter</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+
+<h2>Liste des Équipes</h2>
+@for (equipe of equipes; track equipe) {
+  <div>
+    <h3>Équipe {{ equipe.id }}</h3>
+    <table class="livreurs-table">
+      <thead>
+        <tr>
+          <th>🆔 Code</th>
+          <th>👤 Nom</th>
+          <th>👤 Prénom</th>
+          <th>📩 Email</th>
+          <th>📍 Adresse</th>
+          <th>📦 Commandes</th>
+          <th>✅ Disponible</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (membre of equipe.membres; track membre) {
+          <tr>
+            <td>{{ membre.code }}</td>
+            <td>{{ membre.nom }}</td>
+            <td>{{ membre.prenom }}</td>
+            <td>{{ membre.email }}</td>
+            <td>{{ membre.adresse }}, {{ membre.codePostal }} {{ membre.ville }}</td>
+            <td>{{ membre.commandes.join(', ') }}</td>
+            <td>
+              <!-- Désactivé pour éviter une modification directe ici -->
+              <input type="checkbox" [checked]="membre.disponible" disabled />
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
