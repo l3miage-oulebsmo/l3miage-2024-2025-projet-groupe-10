@@ -90,7 +90,10 @@ export class MapComponent {
   // Ajouter les marqueurs à la carte
   addMarkers(): void {
     this.layerGroup.clearLayers(); // Nettoie la carte avant d'ajouter de nouveaux marqueurs
-  
+    if (!this.map) {
+      console.error("La carte n'est pas prête");
+      return; // On s'assure que la carte est bien initialisée avant d'ajouter des marqueurs
+    }
     this.locations.forEach(location => {
       const { latitude, longitude, name } = location;
   
