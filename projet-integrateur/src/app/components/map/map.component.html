@@ -1,38 +1,22 @@
 <app-header></app-header>
 
-<div style="height: 500px;"
-  leaflet
-  [leafletCenter]="centre()"
-  [leafletZoom]="zoom()"
-  [leafletLayers]="[backgroundMap]"
-  (leafletCenterChange)="centerChange($event)"
-  (leafletZoomChange)="zoomChange($event)"
-  (leafletMapReady)="onMapReady($event)">
+<h1>Carte livreurs</h1>
+
+<div style="height: 300px; width: 300px;"
+  leaflet 
+  [leafletCenter]="centre()" 
+  (leafletCenterChange)="updateCentre($event)" 
+  [leafletZoom]="zoom()" 
+  (leafletZoomChange)="updateZoom($event)" 
+  [leafletLayers]="layers()"
+  (leafletClick)="onMapClick($event)">
 </div>
 
-<mat-toolbar color="primary">
-  <span>Carte Interactive avec Angular et OpenRoute</span>
-</mat-toolbar>
-
-<mat-card>
-  <mat-card-title>Contrôles de la Carte</mat-card-title>
-  <mat-card-content>
-    <mat-form-field appearance="outline">
-      <mat-label>Latitude</mat-label>
-      <input matInput type="number" [(ngModel)]="latitude()" (change)="latChange(latitude())">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Longitude</mat-label>
-      <input matInput type="number" [(ngModel)]="longitude()" (change)="longChange(longitude)">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Zoom</mat-label>
-      <input matInput type="number" [(ngModel)]="zoom()" (change)="zoomChange(zoom)">
-    </mat-form-field>
-
-    <button mat-raised-button color="accent" (click)="resetMap()">Réinitialiser</button>
-    <button mat-raised-button color="primary" (click)="calculateRoute()">Calculer Itinéraire</button>
-  </mat-card-content>
-</mat-card>
+<div>Latitude:</div>
+<input type="number" [(ngModel)]="latitude" name="Latitude" />
+<hr />
+<div>Longitude:</div>
+<input type="number" [(ngModel)]="longitude" name="Longitude" />
+<hr />
+<div>Zoom:</div>
+<input type="number" [(ngModel)]="zoom" name="Zoom" />
