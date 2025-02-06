@@ -78,8 +78,8 @@ export class MapComponent {
 
   onMapReady(map: L.Map) {
     this.map = map; // Stocke la référence à la carte Leaflet
-    this.map.addLayer(this.layerGroup);
     this.layerGroup.addTo(this.map); // Ajoute le LayerGroup à la carte
+    this.map.addLayer(this.layerGroup);
     console.log("Carte prête et LayerGroup ajouté");
   }
   
