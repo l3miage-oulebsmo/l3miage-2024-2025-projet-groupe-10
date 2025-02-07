@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
     "@bluehalo/ngx-leaflet": "^19.0.0",
+    "@types/leaflet": "^1.9.16",
     "leaflet": "^1.9.4",
     "papaparse": "^5.5.2",
     "projet-integrateur": "file:",

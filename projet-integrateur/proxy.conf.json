@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://api.openrouteservice.org",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": { "^/api": "" }
+    }
+  }
+  
