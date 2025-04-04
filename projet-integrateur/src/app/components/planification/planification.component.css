@@ -1,0 +1,21 @@
+.journee-card {
+    color: whitesmoke;
+    background-color: #1e3c72;
+   
+    margin-bottom: 20px; /* Espace entre la journée et les tournées */
+  }
+  
+  .tournees-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet de passer à la ligne si trop de cartes */
+    gap: 15px; /* Espacement entre les tournées */
+    margin-top: 20px;
+  }
+  
+  .tournee-card {
+    color : black;
+    background-color: #dde5ff; /* Bleu clair */
+    padding: 15px;
+    width: 430px; /* Taille fixe pour un bon affichage */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  }

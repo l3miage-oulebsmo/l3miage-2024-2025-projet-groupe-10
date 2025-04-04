@@ -1,6 +1,6 @@
-<app-header></app-header>
+<!--<app-header></app-header>
 
-<!-- Filtre de disponibilité -->
+ Filtre de disponibilité 
 <div class="filter-container">
   <label for="filtreDisponibilite">📌 Filtrer les livreurs : </label>
   <select id="filtreDisponibilite" [(ngModel)]="filtreDisponibilite">
@@ -10,7 +10,7 @@
   </select>
 </div>
 
-<!-- Tableau principal des livreurs -->
+Tableau principal des livreurs 
 <table class="livreurs-table">
   <thead>
     <tr>
@@ -70,7 +70,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (membre of equipe.membres; track membre) {
+       @for  (membre of equipe.membres; track membre) {
           <tr>
             <td>{{ membre.code }}</td>
             <td>{{ membre.nom }}</td>
@@ -79,7 +79,7 @@
             <td>{{ membre.adresse }}, {{ membre.codePostal }} {{ membre.ville }}</td>
             <td>{{ membre.commandes.join(', ') }}</td>
             <td>
-              <!-- Désactivé pour éviter une modification directe ici -->
+               Désactivé pour éviter une modification directe ici 
               <input type="checkbox" [checked]="membre.disponible" disabled />
             </td>
           </tr>
@@ -87,4 +87,74 @@
       </tbody>
     </table>
   </div>
-}
+}-->
+
+<app-header></app-header>
+
+<section class="livreurs-section">
+
+  <!-- Filtre -->
+  <div class="filtre-bar">
+    <label>📌 Filtrer :</label>
+    <select [(ngModel)]="filtreDisponibilite">
+      <option value="tous">Tous</option>
+      <option value="disponible">Disponibles</option>
+      <option value="indisponible">Indisponibles</option>
+    </select>
+  </div>
+
+  <!-- Grille de livreurs -->
+  <div class="grid-livreurs">
+    @for (livreur of getLivreursFiltres(); track livreur) {
+      <div class="livreur-card">
+        <div class="card-header">
+          <h3>{{ livreur.prenom }} {{ livreur.nom }}</h3>
+          <span class="code">{{ livreur.code }}</span>
+        </div>
+
+        <p>📍 {{ livreur.adresse }}, {{ livreur.codePostal }} {{ livreur.ville }}</p>
+        <p>📦 Commandes : <strong>{{ livreur.commandes.length }}</strong></p>
+        <p>📧 {{ livreur.email }}</p>
+
+        <div class="status">
+          <label>✅ Disponible :</label>
+          <input type="checkbox" [(ngModel)]="livreur.disponible" />
+        </div>
+
+        <div class="assign">
+          <select [(ngModel)]="livreur.equipeSelectionnee">
+            <option [ngValue]="null">-- Équipe --</option>
+            @for (equipe of equipes; track equipe) {
+              <option [ngValue]="equipe.id">Équipe {{ equipe.id }}</option>
+            }
+          </select>
+          <button (click)="ajouterLivreurDansEquipe(livreur)">Ajouter ➕</button>
+        </div>
+      </div>
+    }
+  </div>
+
+</section>
+
+<hr />
+
+<section class="equipes-section">
+  <h2>👥 Équipes</h2>
+
+  @for (equipe of equipes; track equipe) {
+    <div class="equipe-card">
+      <h3>Équipe {{ equipe.id }}</h3>
+      <div class="membres-grid">
+        @for (membre of equipe.membres; track membre) {
+          <div class="membre-badge">
+            <p><strong>{{ membre.prenom }} {{ membre.nom }}</strong></p>
+            <p>{{ membre.commandes.length }} 📦</p>
+            <p [class.ok]="membre.disponible" [class.ko]="!membre.disponible">
+              {{ membre.disponible ? '✅ Disponible' : '❌ Indisponible' }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</section>

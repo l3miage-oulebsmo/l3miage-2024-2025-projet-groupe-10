@@ -1,0 +1,33 @@
+<div class="equipe">
+    <h1>Génération automatique des équipes</h1>
+  
+    <button (click)="genererEquipes()">
+      Générer les équipes
+    </button>
+  
+    <br><br>
+  
+    @if (equipes().length === 0) {
+      <p>Aucune équipe générée pour le moment.</p>
+    } @else {
+      @for (equipe of equipes(); track equipe.Employe1.trigramme) {
+        <table class="equipe-table">
+          <tr>
+            <th>Livreur 1</th>
+            <td>{{ equipe.Employe1.prenom }} {{ equipe.Employe1.nom }} ({{ equipe.Employe1.trigramme }})</td>
+          </tr>
+          <tr>
+            <th>Livreur 2</th>
+            <td>{{ equipe.Employe2.prenom }} {{ equipe.Employe2.nom }} ({{ equipe.Employe2.trigramme }})</td>
+          </tr>
+          <tr>
+            <th>Camion</th>
+            <td>{{ equipe.camion.code }} - {{ equipe.camion.type }} ({{ equipe.camion.volume }} m³)</td>
+          </tr>
+        </table>
+        <br>
+      }
+    }
+  
+   
+  </div>

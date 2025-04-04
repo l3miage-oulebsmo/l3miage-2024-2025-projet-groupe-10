@@ -1,22 +1,26 @@
-<app-header></app-header>
+<div class="map-layout">
+  <!-- Partie carte -->
+  <div class="map-container">
+    <!-- Ici tu gardes ta carte Leaflet -->
+    <div leaflet [leafletOptions]="options" [leafletLayers]="allLayers()" [leafletZoom]="zoom()" [leafletCenter]="centre()"></div>
+  </div>
 
-<h1>Carte livreurs</h1>
-
-<div style="height: 300px; width: 300px;"
-  leaflet 
-  [leafletCenter]="centre()" 
-  (leafletCenterChange)="updateCentre($event)" 
-  [leafletZoom]="zoom()" 
-  (leafletZoomChange)="updateZoom($event)" 
-  [leafletLayers]="layers()"
-  (leafletClick)="onMapClick($event)">
+  <!-- Partie tournées -->
+  <div class="tournées-container">
+    <h2>🗂️ Tournées</h2>
+    <button (click)="buttonOptimization()">🚀 Optimiser la tournée</button>
+    @for (tournee of tourneesList; track tournee.vehicle.id) {
+      <div class="tournee-card">
+        <h3>🚚 Véhicule #{{ tournee.vehicle.id }}</h3>
+        <ul>
+          @for (livreur of tournee.livreurs; track livreur.trigramme) {
+            <li>
+              {{ livreur.prenom }} {{ livreur.nom }} ({{ livreur.trigramme }})<br>
+              📧 <a href="mailto:{{ livreur.email }}">{{ livreur.email }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
 </div>
-
-<div>Latitude:</div>
-<input type="number" [(ngModel)]="latitude" name="Latitude" />
-<hr />
-<div>Longitude:</div>
-<input type="number" [(ngModel)]="longitude" name="Longitude" />
-<hr />
-<div>Zoom:</div>
-<input type="number" [(ngModel)]="zoom" name="Zoom" />

@@ -1,0 +1,35 @@
+<!-- <h2>Tournée : {{ service.tourneeObservable()?.refTournee }}</h2>
+
+<ul>@for (liv of service.tourneeObservable()?.livraisons ?? []; track liv.id) {
+    <li>
+      <strong>{{ liv.client }}</strong> - {{ liv.adresseClient }}<br />
+      Statut : {{ liv.statut }}<br />
+      <button (click)="changerStatut(liv, 'en_cours')">Passer en cours</button>
+      <button (click)="changerStatut(liv, 'terminee')">Terminer</button>
+    </li>
+  }
+  
+</ul> -->
+
+
+<h2 style="margin-bottom: 20px;">Tournée : {{ service.tourneeObservable()?.refTournee }}</h2>
+
+@for (liv of service.tourneeObservable()?.livraisons ?? []; track liv.id) {
+  <mat-card style="margin-bottom: 15px;">
+    <mat-card-title>{{ liv.client }}</mat-card-title>
+    <mat-card-content>
+      <p>📍 {{ liv.adresseClient }}</p>
+      <p>
+        Statut :
+        <span class="badge" matBadge="{{ liv.statut }}" matBadgeColor="accent" matBadgeSize="medium">
+          {{ liv.statut }}
+        </span>
+      </p>
+      
+      <div style="margin-top: 10px;">
+        <button mat-raised-button color="primary" (click)="changerStatut(liv, 'en_cours')">En cours</button>
+        <button mat-raised-button color="accent" (click)="changerStatut(liv, 'terminee')">Terminer</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

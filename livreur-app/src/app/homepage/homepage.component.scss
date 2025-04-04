@@ -1,0 +1,25 @@
+.container {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .sous-titre {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .illustration {
+    width: 120px;
+    height: auto;
+    margin: 20px 0;
+  }
+  
+  .boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+ 

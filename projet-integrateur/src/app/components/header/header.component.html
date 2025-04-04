@@ -1,10 +1,31 @@
-<mat-toolbar color="primary">
-    <span><strong> Planificateur - Gestion des Livraisons        </strong></span>
+<!-- <mat-toolbar color="primary">
+    <span><strong> Planificateur    </strong></span>
       <nav>
         <ul>
           <li (click)="goToPlanificateur()">Tableau de Bord</li>
           <li (click)="goToLivreur()">Liste des livreurs</li>
           <li (click)="goToMap()">Carte</li>
+          <li (click)="goToTournees()">Tournees</li>
         </ul>
       </nav>
+</mat-toolbar> -->
+
+
+<mat-toolbar color="primary" class="header-bar">
+  <div class="branding"> 
+    <img src="akline.avif" alt="Akline Logo" class="logo" /> 
+  </div>
+
+  <nav>
+    <ul>
+      <!-- <li (click)="goToPlanificateur()">Tableau de Bord</li> -->
+      <!-- <li (click)="goToLivreur()">Liste des livreurs</li> -->
+      <li (click)="goToMap()">Carte</li>
+     
+      <!-- <li (click)="goToEquipe()">Équipes</li>
+      <li (click)="goToTournees()">Tournées</li> -->
+      <li (click)=" goToPlanification()">Commandes</li>
+      <li (click)="goTotestApi()">Test API</li>
+    </ul>
+  </nav>
 </mat-toolbar>

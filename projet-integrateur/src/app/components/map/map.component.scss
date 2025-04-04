@@ -1,4 +1,31 @@
-#map {
-    height: 500px;
-    width: 100%;
-  }
+.map-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-container {
+  flex: 2;
+  height: 100%;
+}
+
+.map-container > div[leaflet] {
+  height: 100%;
+  width: 100%;
+}
+
+.tournées-container {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+}
+
+.tournee-card {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

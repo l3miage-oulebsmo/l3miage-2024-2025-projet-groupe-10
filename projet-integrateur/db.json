@@ -1,0 +1,35 @@
+{
+    "employes": [
+      { "id": "e1", "nom": "Durand", "prenom": "Paul", "emploi": "livreur" },
+      { "id": "e2", "nom": "Martin", "prenom": "Sophie", "emploi": "livreur" },
+      { "id": "e3", "nom": "Lemoine", "prenom": "Alice", "emploi": "secrétaire" }
+    ],
+    "clients": [],
+    "commandes": [],
+    "camions": [
+      {
+        "id": "cam1",
+        "immatriculation": "AB-123-CD",
+        "type": "KANGOO_VAN",
+        "kilometrage": 123456,
+        "idEntrepot": "ent1"
+      }
+    ],
+    "entrepot": [
+      {
+        "id": "ent1",
+        "nom": "Paris Centre",
+        "lettre": "P",
+        "photo": "",
+        "adresse": "1 rue Entrepot",
+        "codePostal": 75000,
+        "ville": "Paris",
+        "latitude": 48.8566,
+        "longitude": 2.3522,
+        "camions": [],
+        "employes": []
+      }
+    ],
+    "tournees": []
+  }
+  

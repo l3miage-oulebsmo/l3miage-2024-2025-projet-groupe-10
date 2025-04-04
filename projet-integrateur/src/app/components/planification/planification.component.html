@@ -1,0 +1,19 @@
+<h2>📅 Sélectionne une date</h2>
+
+<mat-form-field appearance="outline">
+  <mat-label>Date</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [(ngModel)]="datePlanification"
+    [min]="minDate"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<!-- Résultat -->
+<div *ngIf="journee">
+  <h3>✅ Tournée créée :</h3>
+  <pre>{{ journee | json }}</pre>
+</div>

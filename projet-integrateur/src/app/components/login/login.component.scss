@@ -7,6 +7,13 @@
   background: linear-gradient(135deg, #667eea, #764ba2);
   animation: backgroundAnimation 10s infinite alternate;
 }
+.login-logo img {
+  height: 100px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+
 
 /* 📌 Animation du fond */
 @keyframes backgroundAnimation {

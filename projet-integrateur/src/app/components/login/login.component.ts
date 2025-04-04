@@ -23,13 +23,14 @@ import { MatError } from '@angular/material/form-field';
   styleUrl: './login.component.scss'
 })
 export class loginComponent {
+  loginForm: FormGroup;
   constructor(private router: Router, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-  loginForm: FormGroup;
+  
 
   onLogin() {
     if (this.loginForm.valid) {
@@ -42,4 +43,17 @@ export class loginComponent {
   goToPlanificateur() {
     this.router.navigate(['/planificateur']);
   }
+
+  goToMap() {
+    this.router.navigate(['/map']);
+  }
+
+  goToTournees() {
+    this.router.navigate(['/tournees']);
+  }
+
+  goTotestApi() {
+    this.router.navigate(['/testApi']);
+  }
+
 }
