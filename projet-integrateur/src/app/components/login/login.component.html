@@ -3,7 +3,7 @@
     <div class="header">
       <h1>👋 Bonjour Planificateur !</h1>
       <div class="login-logo">
-        <img src="akline.avif" alt="Logo Akline" />
+        <img src="mobilis.avif" alt="Logo Akline" />
       </div>
       <p>Entrez votre email et votre mot de passe pour accéder à votre espace.</p>
     </div>
@@ -51,6 +51,7 @@
         value="🔑 Se connecter"
         [disabled]="loginForm.invalid"
         class="login-button"
+        (click)="goToPlanificateur()"
         (click)="goToMap()"
         
       >

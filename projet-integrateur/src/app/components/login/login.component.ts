@@ -48,12 +48,5 @@ export class loginComponent {
     this.router.navigate(['/map']);
   }
 
-  goToTournees() {
-    this.router.navigate(['/tournees']);
-  }
-
-  goTotestApi() {
-    this.router.navigate(['/testApi']);
-  }
-
+ 
 }

@@ -27,13 +27,9 @@ export class HeaderComponent {
       this.router.navigate(['/map']);
 
     }
-    // goToEquipe() {
-    //   this.router.navigate(['/equipe']);
-    // }
+   
     goToPlanification() {
       this.router.navigate(['/planification']);
     }
-    goTotestApi() {
-      this.router.navigate(['/testApi']);
-    }
+  
 }
